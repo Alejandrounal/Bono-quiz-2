@@ -1,4 +1,7 @@
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 /*
@@ -26,14 +29,28 @@ public class Retail extends Eslabon {
     }
     
     
-    public void ponerVenta(float precio,String nombreProducto, String codigoVenta){
+    public void ponerVenta(float precio,String nombreProducto, String codigoVenta) throws IOException{
+        File arhivo = new File("catalogo.csv");
+        PrintStream salida = new PrintStream(arhivo);
         for (int i = 0; i < productos.size(); i++) {
             if(nombre.equals(productos.get(i).nombre)){
-                productosVenta.add(new ProductoVenta(productos.get(i).nombre,productos.get(i).getMaterias(),productos.get(i).numLote,precio,codigoVenta));
+               productosVenta.add(new ProductoVenta(precio,codigoVenta, productos.get(i).nombre,productos.get(i).getMaterias(),productos.get(i).numLote,productos.get(i).getnombreManufactura()));
+               String direct = direccion.getLatitud()+"  "+direccion.getLongitud();
+               String centros = null;
+                for (int j = 0; j < centrosDistribucion.size() ; j++) {
+                    String direcc = centrosDistribucion.get(j).direccion.getLatitud()+"  "+centrosDistribucion.get(j).direccion.getLongitud(); 
+                    centros += centrosDistribucion.get(j).nombre+"  "+centrosDistribucion.get(j).descripcion+"  "+direcc;
+                }
+               String direcManufactura = null;
+               direcManufactura = productos.get(i).getnombreManufactura().direccion.getLatitud()+"  "+productos.get(i).getnombreManufactura().direccion.getLongitud();
+               String materias = null;
+                for (int j = 0; j < productos.get(i).getMaterias().size(); j++) {
+                    materias += productos.get(i).getMaterias().get(j).getNombre()+"    ";
+                }
+               salida.println(productos.get(i).nombre+","+productos.get(i).numLote+","+this.nombre+","+this.descripcion+","+direct+","+centros+","+productos.get(i).getnombreManufactura().nombre+","+direcManufactura+","+productos.get(i).getnombreManufactura().getDescripcion()+","+materias);
             }
         }
     }
-    
     
     
     public void cambiarPrecio(float precio,String nombreProducto){

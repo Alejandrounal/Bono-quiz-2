@@ -16,22 +16,14 @@ public class ProductoVenta extends Producto{
     private float precio;
     private String codigoVenta;
     
-    
-    public ProductoVenta(String nombre, ArrayList<Materia> materias, int numLote, float precio,String codigoventa) throws IOException {
-        super(nombre, materias, numLote);
+
+    public ProductoVenta(float precio, String codigoVenta, String nombre, ArrayList<Materia> materias, int numLote, Manufactura nombreManufactura) {
+        super(nombre, materias, numLote, nombreManufactura);
         this.precio = precio;
-        this.codigoVenta = codigoventa;
-        File archivo = new File(nombre);
-        if(!archivo.exists())
-            archivo.createNewFile();
-        PrintStream escritura =  new PrintStream(archivo);
-        for (int i = 0; i < 10; i++) {
-            if(nombre.equals(producto.))
-        }
-        escritura.print(nombre+","+materias.get(numLote));
-        
+        this.codigoVenta = codigoVenta;
     }
 
+    
     public void setPrecio(float precio) {
         this.precio = precio;
     }

@@ -15,11 +15,14 @@ public class Producto  {
     protected String nombre;
     protected int numLote;
     private ArrayList<Materia> materias;
+    private ArrayList<CentroDistribucion> centros;
+    private Manufactura nombreManufactura;
 
-    public Producto(String nombre, ArrayList<Materia> materias, int numLote) {
+    public Producto(String nombre, ArrayList<Materia> materias, int numLote,Manufactura nombreManufactura) {
         this.nombre = nombre;
         this.materias = materias;
         this.numLote = numLote;
+        this.nombreManufactura = nombreManufactura;
     }
 
     public String getNombre() {
@@ -29,6 +32,18 @@ public class Producto  {
     public ArrayList<Materia> getMaterias() {
         return materias;
     }
+
+    public int getNumLote() {
+        return numLote;
+    }
+
+    public Manufactura getnombreManufactura() {
+        return nombreManufactura;
+    }
+    
+    
+    
+    
     
     
 }

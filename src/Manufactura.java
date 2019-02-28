@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 public class Manufactura extends Eslabon{
     private ArrayList<Farmer> granjas;
+    private ArrayList<Producto> productos;
+    
 
     public Manufactura(String nombre, String descripcion, Direccion direccion) {
         super(nombre, descripcion, direccion);
@@ -22,6 +24,31 @@ public class Manufactura extends Eslabon{
     public Manufactura(ArrayList<Farmer> granjas, String nombre, String descripcion, Direccion direccion) {
         super(nombre, descripcion, direccion);
         this.granjas = granjas;
+        this.productos = new ArrayList<>();
+    }
+    
+    public void crearProducto(String nombre, ArrayList<Materia> materias, int numerolote){
+        productos.add(new Producto(nombre,materias,numerolote,this));
+    }
+
+    public ArrayList<Farmer> getGranjas() {
+        return granjas;
+    }
+
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public Direccion getDireccion() {
+        return direccion;
     }
     
     
